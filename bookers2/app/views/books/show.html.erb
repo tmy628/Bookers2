@@ -2,10 +2,10 @@
 <div class="profile-container">
     <h3 class="profile-name">name:<%= @user.name %></h3>
     <h3 class="profile-name">introduction:<%= @user.introduction %></h3>
-    <!-- 何故青くならない？ -->
+    <!-- 青くならないのは何故？ -->
 
     <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
+  　　<% if @user.id == current_user.id %>
         <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
     <% end %>
 </div>
@@ -25,6 +25,9 @@
     <%= f.submit 'Create book' %>
 
 <% end %>
+
+<%= link_to attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(@user.id) %>
+<p><%= link_to @user.name, user_path(@user.id) %></p>
 
 
 <!-- 編集ボタンと削除ボタンをつける-->

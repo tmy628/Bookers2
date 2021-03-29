@@ -28,8 +28,9 @@
 <h1>自分の投稿一覧</h1>
 
 <% @books.each do |f| %>
-  <%= attachment_image_tag f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <!-- .userは「モデル名（小文字）でデータを参照できる,：データを指定」-->
+  <%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %>
+  <!-- .userは、取り出してくるユーザーのデータは１つしかないから単数形になる 「モデル名（小文字）でデータの参照ができる,：データを指定」今回の場合は f.user, :profile_image -->
+  <!--ユーザー画像に、ユーザーの投稿一覧=user/idにへ遷移するリンクを付けたい "f.uesr.id"とすると "投稿したものに関連するユーザー"に関連するidとなる -->
   <%= link_to f.title, book_path(f.id) %>
   <%= f.body %><br>
 <% end %>
