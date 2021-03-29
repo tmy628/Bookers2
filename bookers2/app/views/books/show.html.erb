@@ -1,0 +1,39 @@
+<h1>User info</h1>
+<div class="profile-container">
+    <h3 class="profile-name">name:<%= @user.name %></h3>
+    <h3 class="profile-name">introduction:<%= @user.introduction %></h3>
+    <!-- 何故青くならない？ -->
+
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+  <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+</div>
+
+
+
+<h1>New book</h1>
+
+<%= form_for(@booknew) do |f| %>
+
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+
+    <h4>Opinion</h4>
+    <%= f.text_area :body %><br>
+
+    <%= f.submit 'Create book' %>
+
+<% end %>
+
+
+<!-- 編集ボタンと削除ボタンをつける-->
+<h2>Title:</h2>
+<p><%= link_to @book.title, book_path(@book.id) %></p>
+<p><%= @book.title %></p>
+<h2>Body:</h2>
+<p><%= @book.body %></p>
+  <% if @user.id == current_user.id %>
+    <%= link_to "Edit", edit_book_path(@book.id) %></p>
+    <%= link_to "Destroy", book_path(@book.id) , method: :delete, "data-confirm" => "Are you sure?" %>
+  <% end %>

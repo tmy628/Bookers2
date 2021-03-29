@@ -10,18 +10,41 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+
+  <div id="slidemenu">
+    <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+      <% if user_signed_in? %>
+      <li class="">
+        <%= link_to 'Home', user_path(@user.id) %>
       </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+      <li class="">
+        <%= link_to 'Users', users_path %>
       </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
+      <li class="">
+        <%= link_to 'Books', books_path %>
       </li>
-    <% end %>
-    <%= yield %>
-  </body>
+      <li class="">
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+
+      <% else %>
+      <li class="">
+        <%= link_to "Home", users_path %>
+      </li>
+      <li class="">
+        <%= link_to "About", about_path %>
+      </li>
+      <!-- 上二つが仮。ログアウト時のホームと、home/aboutを調べる。 -->
+      <li class="">
+        <%= link_to "sign up", new_user_registration_path %>
+      </li>
+      <li class="">
+        <%= link_to "Login", new_user_session_path %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= yield %>
+  <p>フッター</p>
+</body>
 </html>

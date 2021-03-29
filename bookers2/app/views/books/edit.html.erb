@@ -1,0 +1,9 @@
+<h1>Editing Book</h1>
+<%= form_for(@book) do |f| %>
+<!-- URLをルートパスにしたい-->
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
+    <h4>本文</h4>
+    <%= f.text_area :body %><br>
+    <%= f.submit 'Update Book' %>
+<% end %>

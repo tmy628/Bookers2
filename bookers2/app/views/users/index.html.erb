@@ -1,0 +1,61 @@
+<% if user_signed_in? %>
+
+  <h1>ユーザーの一覧ページ</h1>
+
+  <h1>User info</h1>
+  <div class="profile-container">
+    <h3 class="profile-name">name:<%= @user.name %></h3>
+    <h3 class="profile-name">introduction:<%= @user.introduction %></h3>
+    <!-- 青くならないのは何故？ -->
+
+    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+    <% if @user.id == current_user.id %>
+      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+  </div>
+
+
+
+  <h1>New book</h1>
+
+  <%= form_for(@book) do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Opinion</h4>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit 'Create book' %>
+
+  <% end %>
+
+  <h1>Users</h1>
+
+  <% @users.each do |f| %>
+  <%= attachment_image_tag f, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+  <!-- .userは「モデル名（小文字）でデータを参照できる,：データを指定」-->
+  <%= f.name %>
+  <%=link_to "Show", user_path(f.id) %>
+  <% end %>
+
+  <% else %>
+  <h1>welcome to
+  <i class="fas fa-book"></i>
+  <!--Book Icon | Font Awesomeより-->
+  <strong>Bookers</strong>
+  <!--<strong> 太字-->
+    !!
+  </h1>
+  <p>In
+  <i class="fas fa-book"></i>
+  <strong>Bookers</strong>
+  ,
+  </p>
+  <p>you can share and exchange your opinions , inpressions , and emotions</p>
+  <p> about various books!</p>
+
+<p>(ログアウト済み)</p>
+
+
+<% end %>
