@@ -26,6 +26,11 @@
   <p>you can share and exchange your opinions , inpressions , and emotions</p>
   <p> about various books!</p>
 
-<p>ログアウト済み</p>
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <!--半分の幅の"block botton"の場合は、 .col-6を使用 .mx-autoも水平方向に中央揃えにする-->
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %><br>
+
+    <%= link_to "sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+  </div>
 
 <% end %>
