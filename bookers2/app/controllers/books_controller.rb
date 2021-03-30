@@ -30,7 +30,6 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
-    # 仮
     render layout: false #application.html.erbを適用させたくない
   end
 

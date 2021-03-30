@@ -1,11 +1,11 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
-  <!-- ログインの画面のemailを送るフォームを、nameを送るフォームに変更 -->
+  <!-- ログイン画面のemailを送るフォームを、nameを送るフォームに変更 -->
 
   <div class="field">
     <%= f.label :password %><br />

@@ -13,6 +13,4 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#index', as: 'about'
   # 'home#index' → 'homes#index'　複数形
 
-  # root :to => 'user#index'
-
 end
