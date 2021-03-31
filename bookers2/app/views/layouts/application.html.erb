@@ -23,10 +23,11 @@
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="">
-              <%= link_to 'Home', root_path %>
+              <%= link_to 'Home', user_path(@user.id) %>
+              <!--Bookersに飛ぼうとするとエラーが起きる、何故-->
             </li>
             <li class="">
-              <%= link_to 'Users', users_path(@user.id) %>
+              <%= link_to 'Users', users_path %>
             </li>
             <li class="">
               <%= link_to 'Books', books_path %>

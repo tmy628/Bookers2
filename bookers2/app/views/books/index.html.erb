@@ -2,13 +2,26 @@
 <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
 <!--部分テンプレートを呼び出せるように設定-->
 
+<div class="col-xs-9">
+    <h2>Books</h2>
+    <!-- ここに登録者一覧を書き出す -->
+  <table class="table table-hover">
+    <thead>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </thead>
 
-<h2>Books</h2>
-<!-- ここに登録者一覧を書き出す -->
-<% @books.each do |f| %>
-  <%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"), user_path(f.user.id) %>
-  <!-- .userは、取り出してくるユーザーのデータは１つしかないから単数形になる 「モデル名（小文字）でデータの参照ができる,：データを指定」今回の場合は f.user, :profile_image -->
-  <!--ユーザー画像に、ユーザーの投稿一覧=user/idへ遷移するリンクを付けたい "f.uesr.id"とすると "投稿したものに関連するユーザー"に関連するidとなる -->
-  <%= link_to f.title, book_path(f.id) %>
-  <%= f.body %><br>
-<% end %>
+    <% @books.each do |f| %>
+
+    <tr>
+      <td><%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"), user_path(f.user.id) %></td>
+      <!-- .userは、取り出してくるユーザーのデータは１つしかないから単数形になる 「モデル名（小文字）でデータの参照ができる,：データを指定」今回の場合は f.user, :profile_image -->
+      <!--ユーザー画像に、ユーザーの投稿一覧=user/idへ遷移するリンクを付けたい "f.uesr.id"とすると "投稿したものに関連するユーザー"に関連するidとなる -->
+      <td><%= link_to f.title, book_path(f.id) %></td>
+      <td><%= f.body %></td>
+    <% end %>
+    </tr>
+  </table>
+</div>

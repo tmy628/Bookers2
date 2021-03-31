@@ -1,23 +1,24 @@
-<h1>welcome to
-  <i class="fas fa-book"></i>
-  <!--Book Icon | Font Awesomeより-->
-  <strong>Bookers</strong>
-  <!--<strong> 太字-->
-    !!
-</h1>
-<p>In
-  <i class="fas fa-book"></i>
-  <strong>Bookers</strong>
-  ,
-</p>
-<p>you can share and exchange your opinions , inpressions , and emotions</p>
-<p> about various books!</p>
+<%= render '/users/list', user: @user, book: @book %>
+<!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
+<!--部分テンプレートを呼び出せるように設定-->
 
-<div class="d-grid gap-2 col-6 mx-auto">
-  <!--半分の幅の"block botton"の場合は、 .col-6を使用 .mx-autoも水平方向に中央揃えにする-->
-  <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %><br>
+<div class="col-xs-9">
+    <h2>Users</h2>
+  <table class="table table-hover">
+    <thead>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </thead>
 
-  <%= link_to "sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+    <% @users.each do |f| %>
+
+    <tr>
+      <td><%= attachment_image_tag f, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></td>
+      <!-- .userは、「モデル名（小文字）でデータを参照できる,：データを指定」-->
+      <td><%= f.name %></td>
+      <td><%=link_to "Show", user_path(f.id) %></td>
+      <% end %>
+    </tr>
+  </table>
 </div>
-
-
