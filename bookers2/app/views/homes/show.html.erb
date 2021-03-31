@@ -1,22 +1,37 @@
 <!--home-->
-<h1>welcome to
-  <i class="fas fa-book"></i>
-  <!--Book Icon | Font Awesomeより-->
-  <strong>Bookers</strong>
-  <!--<strong> 太字-->
-    !!
-</h1>
-<p>In
-  <i class="fas fa-book"></i>
-  <strong>Bookers</strong>
-  ,
-</p>
-<p>you can share and exchange your opinions , inpressions , and emotions</p>
-<p> about various books!</p>
 
-<div class="d-grid gap-2 col-6 mx-auto">
-  <!--半分の幅の"block botton"の場合は、 .col-6を使用 .mx-autoも水平方向に中央揃えにする-->
-  <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %><br>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+      <h1>welcome to
+      <i class="fas fa-book">
+      <!--Book Icon | Font Awesomeより-->
+      </i><strong>Bookers</strong>
+      !!
+      <!--<strong> 太字-->
+      </h1>
 
-  <%= link_to "sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+
+      <p>In
+        <i class="fas fa-book">
+        </i><strong>Bookers</strong>
+        ,
+      </p>
+      <p>you can share and exchange your opinions , inpressions , and emotions</p>
+      <p> about various books!</p>
+      <div class="btm-wrapper col-10 mx-auto">
+        <div class="row">
+          <%= link_to "Log in", new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %><br>
+          <%= link_to "sign up", new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="mx-auto">
+      <p>CopyRight Infratop.inc</p>
+    </div>
+  </div>
 </div>

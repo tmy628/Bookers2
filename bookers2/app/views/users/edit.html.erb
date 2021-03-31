@@ -1,25 +1,30 @@
-<h3>User info(編集ページ)</h3>
 
-<%= form_with model:@user, local:true do |f| %>
-<div class="form-group has-icon">
-  <label class="control-label sr-only" for="inputEmail">Name</label>
-  <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
-  <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-</div>
 
-<div class="form-group has-icon">
-  <div class="user-edit-image">
-    <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
+<div class="container">
+  <%= form_with model:@user, local:true do |f| %>
+  <div class="row">
+    <div class=class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+        <div class="form-group">
+          <label for="user_name">Name</label>
+          <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+        </div>
+
+        <div class="form-group">
+          <label for="user-image">image</label><br>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+        </div>
+
+        <div class="form-group">
+          <label for="user_introduction">introduction</label>
+          <%= f.text_field :introduction, autofocus: true, class:"form-control", id:"inputEmail" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Update User", class:"btn btn-secondary" %>
+        </div>
+    </div>
   </div>
-  <label class="control-label sr-only" for="inputEmail">Image</label><br>
-  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
 </div>
 
-<div class="form-group has-icon">
-  <label class="control-label sr-only" for="inputEmail">introduction</label>
-  <%= f.text_field :introduction, autofocus: true, class:"form-control", id:"inputEmail" %>
-  <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-</div>
-
-<%= f.submit "Update User", class:"btn btn-secondary" %>
 <% end %>

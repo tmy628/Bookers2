@@ -6,22 +6,21 @@
       <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
 
       <table class="table">
-      <thead>
-        <th></th>
-        <th></th>
-      </thead>
-        <tr>
-          <td>name</td>
-          <td><%= @user.name %></td>
-        </tr>
+        <tbody>
+          <tr></tr>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name %></td>
+          </tr>
 
-        <tr>
-          <td>introduction</td>
-          <td><%= user.introduction %></td>
-        </tr>
+          <tr>
+            <td>introduction</td>
+            <td><%= user.introduction %></td>
+          </tr>
 
-        <tr><% if user.id == current_user.id %></tr>
-        <% end %>
+          <tr><% if user.id == current_user.id %></tr>
+          <% end %>
+        </tbody>
       </table>
 
       <% if user.id == current_user.id %>
