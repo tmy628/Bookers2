@@ -22,11 +22,11 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'Home', user_path(@user.id), class: 'nav-link text-light' %>
+            <li class="">
+              <%= link_to 'Home', root_path %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'Users', users_path, class: 'nav-link text-light' %>
+            <li class="">
+              <%= link_to 'Users', users_path(@user.id) %>
             </li>
             <li class="">
               <%= link_to 'Books', books_path %>
@@ -37,7 +37,7 @@
 
             <% else %>
             <li class="">
-              <%= link_to 'Home', users_path %>
+              <%= link_to 'Home', root_path %>
             </li>
             <li class="">
               <%= link_to "About", about_path %>
@@ -55,9 +55,6 @@
         </div>
       </nav>
     </header>
-
-    </ul>
-  </div>
   <%= yield %>
   <footer>CopyRight Infratop.inc</footer>
 </body>

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'users#index'
-  # ログイン後に適用されるのかどうなのか
+  root 'homes#show'
+  # homes/showに遷移
 
   resources :homes, only: [:new, :cerate, :show]
 
