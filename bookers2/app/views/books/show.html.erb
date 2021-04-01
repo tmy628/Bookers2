@@ -1,4 +1,12 @@
-<%= render '/users/list', user: @user, book: @book %>
+<%= flash[:notice] %>
+
+<% if flash[:success] %>
+  <div class="flash">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+
+<%= render '/users/list', user: @user, book: @booknew %>
 <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
 <!--部分テンプレートを呼び出せるように設定-->
 
@@ -21,3 +29,4 @@
       <% end %>
     </tr>
   </table>
+</div>

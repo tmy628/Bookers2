@@ -1,7 +1,15 @@
-
+<% if @book.errors.any? %>
+  <h3><%= @book.errors.count %>errors prohibited this book from being saved:</h3>
+    <% @book.errors.full_messages.each do |message| %>
+      <ul>
+        <li><%= message %></li>
+      </ul>
+    <% end %>
+<% end %>
+<!--エラーメッセージを表示-->
 
 <div class="container">
-  <%= form_with model:@user, local:true do |f| %>
+<%= form_with model:@user, local:true do |f| %>
   <div class="row">
     <div class=class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>User info</h2>

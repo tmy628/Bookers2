@@ -1,4 +1,9 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
+  # ログイン済ユーザーのみにアクセスを許可する
+  # コントローラーの先頭に記載することで、そこで行われる処理はログインユーザーによってのみ実行可能となる
+  before_action :correct_user, only: [:edit, :update]
+  # サインインしているユーザーを取得する
 
   def new
   end
@@ -8,7 +13,19 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     # セーブ直前の行に記述する→保存の前にユーザーIDと関連しているという記述をすることで連動する
     @book.save
-    redirect_to book_path(@book.id)
+
+    if @book.update(book_params)
+      flash[:success] = "Book was successfully created."
+      # サクセスメッセージを表示
+      redirect_to book_path(@book.id)
+
+    else
+      @books = Book.all
+      @user = current_user
+      render action: :index
+      # indexのアクションをスルーしてindex.htnl.erbへ
+      # renderはredirect_toと異なりアクションを経由せずそのままビューを出力するので、ビューで使う変数はrenderの前にそのアクションで定義しないといけない
+    end
   end
 
   def index
@@ -34,8 +51,16 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    # 動作の確認　何をしているか
+    #@book.update(book_params)
+
+    if @book.update(book_params)
+      flash[:success] = "Book was successfully updated."
+      # サクセスメッセージを表示
+      redirect_to book_path(@book.id)
+    else
+      render action: :edit
+    end
+
     redirect_to book_path(@book.id)
   end
 
@@ -45,6 +70,14 @@ class BooksController < ApplicationController
     redirect_to books_path
     # 一覧画面へ遷移させたい
     # 一覧画面へ遷移させた後、文字の表示をさせたい
+  end
+
+  def correct_user
+    @book = Book.find(params[:id])
+    @user = @book.user
+    if current_user != @user
+      redirect_to books_path
+    end
   end
 
   private
