@@ -27,10 +27,9 @@ class UsersController < ApplicationController
     @user.update(user_params)
 
     if @user.update(user_params)
-      flash[:success] = "User was successfully updated."
+      flash[:success] = "You have updated user successfully."
       # サクセスメッセージを表示
       redirect_to user_path(@user.id)
-
     else
       render action: :edit
     end

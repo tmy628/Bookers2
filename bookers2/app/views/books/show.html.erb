@@ -1,3 +1,4 @@
+<!--Book detail 詳細ページ-->
 <%= flash[:notice] %>
 
 <% if flash[:success] %>
@@ -5,12 +6,13 @@
     <%= flash[:success] %>
   </div>
 <% end %>
+<!--サクセスメッセージを表示-->
 
 <%= render '/users/list', user: @user, book: @booknew %>
 <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
 <!--部分テンプレートを呼び出せるように設定-->
 
-<div class="col-xs-9">
+<div class="col-md-8 offset-md-1">
   <h2>Books detail</h2>
   <table class="table table-hover">
     <thead>

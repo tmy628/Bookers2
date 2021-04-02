@@ -1,8 +1,18 @@
+<!--Users 一覧ページ-->
+<%= flash[:notice] %>
+
+<% if flash[:success] %>
+  <div class="flash">
+    <%= flash[:success] %>
+  </div>
+<% end %>
+<!--サクセスメッセージを表示-->
+
 <%= render '/users/list', user: @user, book: @book %>
 <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
 <!--部分テンプレートを呼び出せるように設定-->
 
-<div class="col-xs-9">
+<div class="col-md-8 offset-md-1">
     <h2>Users</h2>
   <table class="table table-hover">
     <thead>

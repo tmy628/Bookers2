@@ -15,7 +15,7 @@ class BooksController < ApplicationController
     @book.save
 
     if @book.update(book_params)
-      flash[:success] = "Book was successfully created."
+      flash[:success] = "You have created book successfully."
       # サクセスメッセージを表示
       redirect_to book_path(@book.id)
 
@@ -51,17 +51,15 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    #@book.update(book_params)
+    # @book.update(book_params)
 
     if @book.update(book_params)
-      flash[:success] = "Book was successfully updated."
+      flash[:success] = "You have created book successfully."
       # サクセスメッセージを表示
       redirect_to book_path(@book.id)
     else
-      render action: :edit
+       render action: :edit
     end
-
-    redirect_to book_path(@book.id)
   end
 
   def destroy
@@ -70,14 +68,6 @@ class BooksController < ApplicationController
     redirect_to books_path
     # 一覧画面へ遷移させたい
     # 一覧画面へ遷移させた後、文字の表示をさせたい
-  end
-
-  def correct_user
-    @book = Book.find(params[:id])
-    @user = @book.user
-    if current_user != @user
-      redirect_to books_path
-    end
   end
 
   private
@@ -90,4 +80,11 @@ class BooksController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
+  def correct_user
+    @book = Book.find(params[:id])
+    @user = @book.user
+    if current_user != @user
+      redirect_to books_path
+    end
+  end
 end
