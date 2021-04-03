@@ -54,7 +54,7 @@ class BooksController < ApplicationController
     # @book.update(book_params)
 
     if @book.update(book_params)
-      flash[:success] = "You have created book successfully."
+      flash[:success] = "You have updated book successfully."
       # サクセスメッセージを表示
       redirect_to book_path(@book.id)
     else
@@ -84,7 +84,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     if current_user != @user
-      redirect_to books_path
+      redirect_to user_path
     end
   end
 end
