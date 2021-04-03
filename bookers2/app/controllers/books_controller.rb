@@ -71,9 +71,9 @@ class BooksController < ApplicationController
   end
 
   private
+   #  データベースからデータを取得
   def book_params
     params.require(:book).permit(:title, :body)
-    #  データベースからデータを取得
   end
 
   def user_params
@@ -84,7 +84,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     if current_user != @user
-      redirect_to user_path
+      redirect_to books_path
     end
   end
 end

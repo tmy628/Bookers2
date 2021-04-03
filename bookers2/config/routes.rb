@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'homes#show'
-  # homes/showに遷移
+  root 'homes#index'
+  # homes/indexに遷移
 
   resources :homes, only: [:new, :cerate, :show]
 
@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-  get 'home/about' => 'homes#index', as: 'about'
-  # 'home#index' → 'homes#index'　複数形
+  get 'home/about' => 'homes#show', as: 'about'
 
 end
