@@ -1,6 +1,4 @@
-<!--Book detail 詳細ページ-->
-<%= flash[:notice] %>
-
+<!--Book detail 投稿詳細ページ-->
 <% if flash[:success] %>
   <div class="flash">
     <%= flash[:success] %>
@@ -8,27 +6,33 @@
 <% end %>
 <!--サクセスメッセージを表示-->
 
-<%= render '/users/list', user: @user, book: @booknew %>
-<!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
-<!--部分テンプレートを呼び出せるように設定-->
 
-<div class="col-md-8 offset-md-1">
-  <h2>Books detail</h2>
-  <table class="table table-hover">
-    <thead>
-    </thead>
-    <tr>
-      <td><%= link_to attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(@user.id) %><br>
-      <%= link_to @user.name, user_path(@user.id) %></td>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render '/users/list', user: @user, book: @book %>
+      <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
+      <!--部分テンプレートを呼び出せるように設定-->
+    </div>
+    <div class="col-md-8 offset-md-1">
+    <h2>Books detail</h2>
+    <table class="table table-hover">
+      <thead>
+      </thead>
+      <tr>
+        <td><%= link_to attachment_image_tag(@user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(@user.id) %><br>
+        <%= link_to @user.name, user_path(@user.id) %></td>
 
-      <td><%= link_to @book.title, book_path(@book.id) %></td>
-      <td><%= @book.body %></td>
+        <td><%= link_to @book.title, book_path(@book.id) %></td>
+        <td><%= @book.body %></td>
 
-      <!-- 編集ボタンと削除ボタンをつける-->
-      <% if @user.id == current_user.id %>
-        <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
-        <td><%= link_to "Destroy", book_path(@book.id) , method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-danger" %></td>
-      <% end %>
-    </tr>
-  </table>
+        <!-- 編集ボタンと削除ボタンをつける-->
+        <% if @user.id == current_user.id %>
+          <td><%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-sm btn-success" %></td>
+          <td><%= link_to "Destroy", book_path(@book.id) , method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-danger" %></td>
+        <% end %>
+      </tr>
+    </table>
+    </div>
+  </div>
 </div>

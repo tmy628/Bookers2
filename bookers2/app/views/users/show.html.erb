@@ -8,12 +8,17 @@
 <% end %>
 <!--サクセスメッセージを表示-->
 
-<%= render '/users/list', user: @user, book: @book %>
-<!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
-<!--部分テンプレートを呼び出せるように設定-->
 
-<div class="col-md-8 offset-md-1">
-  <h2>Books</h2>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render '/users/list', user: @user, book: @book %>
+      <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
+      <!--部分テンプレートを呼び出せるように設定-->
+    </div>
+    <div class="col-md-8 offset-md-1">
+    <h2>Books</h2>
     <table class="table table-hover">
       <thead>
         <th></th>
@@ -21,14 +26,17 @@
         <th>Opinion</th>
         <th colspan="3"></th>
       </thead>
+
       <% @books.each do |f| %>
       <tr>
         <td><%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %></td>
         <!-- .userは、「モデル名（小文字）でデータを参照できる,：データを指定」-->
         <td><%= link_to f.title, book_path(f.id) %></td>
         <td><%= f.body %></td>
-        <% end %>
+      <% end %>
       </tr>
     </table>
+    </div>
+  </div>
 </div>
 <!-- 詳細リンク繋ぐ必要がある -->
