@@ -6,11 +6,10 @@
 <% end %>
 <!--サクセスメッセージを表示-->
 
-
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <%= render '/users/list', user: @user, book: @book %>
+      <%= render '/users/list', user: @user, book: @booknew %>
       <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
       <!--部分テンプレートを呼び出せるように設定-->
     </div>
