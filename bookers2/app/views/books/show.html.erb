@@ -4,7 +4,7 @@
     <%= flash[:success] %>
   </div>
 <% end %>
-<!--サクセスメッセージを表示-->
+<!--投稿データの新規投稿・更新時にサクセスメッセージを表示-->
 
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -12,6 +12,7 @@
       <%= render '/users/list', user: @user, book: @booknew %>
       <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値], [ローカル変数]:[渡す値]-->
       <!--部分テンプレートを呼び出せるように設定-->
+      <!--bookには@booknewを渡す → books_controllerより-->
     </div>
     <div class="col-md-8 offset-md-1">
     <h2>Books detail</h2>
