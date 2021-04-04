@@ -10,8 +10,9 @@ class User < ApplicationRecord
   attachment :profile_image
 
   validates :name,
-    presence: true, length: { in: 2..20 }
+    presence: true, uniqueness: true, length: { in: 2..20 }
     # 文字数の制限を設ける→length #長さの範囲を2-20文字→in ..
+    # 一意性を保つバリデーションの実装（uniqueness: true）
   validates :introduction,
     length: { maximum: 50 }
     # 長さの下限を50文字に設定→minimum
