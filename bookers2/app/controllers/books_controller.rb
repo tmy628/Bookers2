@@ -9,20 +9,20 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
+    @book = Book.new(book_params) # 何を新しく保存するのかを指定
+    @book.user_id = current_user.id # 誰が投稿したのかを指定
     # セーブ直前の行に記述する→保存の前にユーザーIDと関連しているという記述をすることで連動する
     @book.save
 
-    if @book.update(book_params)
+    if @book.update(book_params) # もし保存ができたら
       flash[:success] = "You have created book successfully."
       # サクセスメッセージを表示
-      redirect_to book_path(@book.id)
+      redirect_to book_path(@book.id) # 投稿詳細画面へ遷移
 
-    else
+    else # でなければ
       @books = Book.all
       @user = current_user
-      render action: :index
+      render action: :index # indexへ遷移
       # indexのアクションをスルーしてindex.htnl.erbへ
       # renderはredirect_toと異なりアクションを経由せずそのままビューを出力するので、ビューで使う変数はrenderの前にそのアクションで定義しないといけない
     end
@@ -50,14 +50,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]) # 何を更新存するのかを指定
 
-    if @book.update(book_params)
+    if @book.update(book_params) # もし更新ができたら
       flash[:success] = "You have updated book successfully."
       # サクセスメッセージを表示
-      redirect_to book_path(@book.id)
-    else
-       render action: :edit
+      redirect_to book_path(@book.id) # 投稿詳細画面へ遷移
+    else # でなければ
+       render action: :edit # editへ遷移
     end
   end
 
